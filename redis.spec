@@ -4,7 +4,7 @@
 #
 Name     : redis
 Version  : 2.10.3
-Release  : 9
+Release  : 10
 URL      : https://pypi.python.org/packages/source/r/redis/redis-2.10.3.tar.gz
 Source0  : https://pypi.python.org/packages/source/r/redis/redis-2.10.3.tar.gz
 Summary  : Python client for Redis key-value store
