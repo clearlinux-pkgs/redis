@@ -4,7 +4,7 @@
 #
 Name     : redis
 Version  : 2.10.5
-Release  : 12
+Release  : 13
 URL      : https://pypi.python.org/packages/source/r/redis/redis-2.10.5.tar.gz
 Source0  : https://pypi.python.org/packages/source/r/redis/redis-2.10.5.tar.gz
 Summary  : Python client for Redis key-value store
@@ -33,9 +33,17 @@ python components for the redis package.
 
 
 %prep
+cd ..
 %setup -q -n redis-2.10.5
 
 %build
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -falign-functions=32 -fno-semantic-interposition -O3 -flto "
+export FCFLAGS="$CFLAGS -falign-functions=32 -fno-semantic-interposition -O3 -flto "
+export FFLAGS="$CFLAGS -falign-functions=32 -fno-semantic-interposition -O3 -flto "
+export CXXFLAGS="$CXXFLAGS -falign-functions=32 -fno-semantic-interposition -O3 -flto "
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
