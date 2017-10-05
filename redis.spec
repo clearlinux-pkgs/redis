@@ -4,13 +4,14 @@
 #
 Name     : redis
 Version  : 2.10.6
-Release  : 23
+Release  : 24
 URL      : https://pypi.debian.net/redis/redis-2.10.6.tar.gz
 Source0  : https://pypi.debian.net/redis/redis-2.10.6.tar.gz
 Summary  : Python client for Redis key-value store
 Group    : Development/Tools
 License  : MIT
 Requires: redis-legacypython
+Requires: redis-python3
 Requires: redis-python
 BuildRequires : pbr
 BuildRequires : pip
@@ -26,6 +27,7 @@ BuildRequires : setuptools
 %package legacypython
 Summary: legacypython components for the redis package.
 Group: Default
+Requires: python-core
 
 %description legacypython
 legacypython components for the redis package.
@@ -35,9 +37,19 @@ legacypython components for the redis package.
 Summary: python components for the redis package.
 Group: Default
 Requires: redis-legacypython
+Requires: redis-python3
 
 %description python
 python components for the redis package.
+
+
+%package python3
+Summary: python3 components for the redis package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the redis package.
 
 
 %prep
@@ -48,16 +60,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1505059385
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
+export SOURCE_DATE_EPOCH=1507171239
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1505059385
+export SOURCE_DATE_EPOCH=1507171239
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -73,5 +85,8 @@ echo ----[ mark ]----
 /usr/lib/python2*/*
 
 %files python
+%defattr(-,root,root,-)
+
+%files python3
 %defattr(-,root,root,-)
 /usr/lib/python3*/*
