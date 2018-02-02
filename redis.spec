@@ -4,7 +4,7 @@
 #
 Name     : redis
 Version  : 2.10.6
-Release  : 26
+Release  : 27
 URL      : https://pypi.debian.net/redis/redis-2.10.6.tar.gz
 Source0  : https://pypi.debian.net/redis/redis-2.10.6.tar.gz
 Summary  : Python client for Redis key-value store
