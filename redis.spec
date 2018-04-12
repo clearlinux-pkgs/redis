@@ -4,13 +4,12 @@
 #
 Name     : redis
 Version  : 2.10.6
-Release  : 27
+Release  : 28
 URL      : https://pypi.debian.net/redis/redis-2.10.6.tar.gz
 Source0  : https://pypi.debian.net/redis/redis-2.10.6.tar.gz
 Summary  : Python client for Redis key-value store
 Group    : Development/Tools
 License  : MIT
-Requires: redis-legacypython
 Requires: redis-python3
 Requires: redis-python
 BuildRequires : pbr
@@ -24,19 +23,9 @@ BuildRequires : setuptools
         
         The Python interface to the Redis key-value store.
 
-%package legacypython
-Summary: legacypython components for the redis package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the redis package.
-
-
 %package python
 Summary: python components for the redis package.
 Group: Default
-Requires: redis-legacypython
 Requires: redis-python3
 
 %description python
@@ -60,29 +49,22 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507171239
+export SOURCE_DATE_EPOCH=1523566748
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1507171239
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files python
 %defattr(-,root,root,-)
