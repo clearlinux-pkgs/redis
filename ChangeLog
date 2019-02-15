@@ -1,3 +1,44 @@
+* 3.1.0
+    * Connection URLs must have one of the following schemes:
+      redis://, rediss://, unix://. Thanks @jdupl123. #961/#969
+    * Fixed an issue with retry_on_timeout logic that caused some TimeoutErrors
+      to be retried. Thanks Aaron Yang. #1022/#1023
+    * Added support for SNI for SSL. Thanks @oridistor and Roey Prat. #1087
+    * Fixed ConnectionPool repr for pools with no connections. Thanks
+      Cody Scott. #1043/#995
+    * Fixed GEOHASH to return a None value when specifying a place that
+      doesn't exist on the server. Thanks @guybe7. #1126
+    * Fixed XREADGROUP to return an empty dictionary for messages that
+      have been deleted but still exist in the unacknowledged queue. Thanks
+      @xeizmendi. #1116
+    * Added an owned method to Lock objects. owned returns a boolean
+      indicating whether the current lock instance still owns the lock.
+      Thanks Dave Johansen. #1112
+    * Allow lock.acquire() to accept an optional token argument. If
+      provided, the token argument is used as the unique value used to claim
+      the lock. Thankd Dave Johansen. #1112
+    * Added a reacquire method to Lock objects. reaquire attempts to renew
+      the lock such that the timeout is extended to the same value that the
+      lock was initially acquired with. Thanks Ihor Kalnytskyi. #1014
+    * Stream names found within XREAD and XREADGROUP responses now properly
+      respect the decode_responses flag.
+    * XPENDING_RANGE now requires the user the specify the min, max and
+      count arguments. Newer versions of Redis prevent ount from being
+      infinite so it's left to the user to specify these values explicitly.
+    * ZADD now returns None when xx=True and incr=True and an element
+      is specified that doesn't exist in the sorted set. This matches
+      what the server returns in this case. #1084
+    * Added client_kill_filter that accepts various filters to identify
+      and kill clients. Thanks Theofanis Despoudis. #1098
+    * Fixed a race condition that occurred when unsubscribing and
+      resubscribing to the same channel or pattern in rapid succession.
+      Thanks Marcin Raczyński. #764
+    * Added a LockNotOwnedError that is raised when trying to extend or
+      release a lock that is no longer owned. This is a subclass of LockError
+      so previous code should continue to work as expected. Thanks Joshua
+      Harlow. #1095
+    * Fixed a bug in GEORADIUS that forced decoding of places without
+      respecting the decode_responses option. Thanks Bo Bayles. #1082
 * 3.0.1
     * Fixed regression with UnixDomainSocketConnection caused by 3.0.0.
       Thanks Jyrki Muukkonen
@@ -35,6 +76,9 @@
     * ZADD now requires all element names/scores be specified in a single
       dictionary argument named mapping. This was required to allow the NX,
       XX, CH and INCR options to be specified.
+    * ssl_cert_reqs now has a default value of 'required' by default. This
+      should make connecting to a remote Redis server over SSL more secure.
+      Thanks u2mejc
     * Removed support for EOL Python 2.6 and 3.3. Thanks jdufresne
   OTHER CHANGES
     * Added missing DECRBY command. Thanks derek-dchu
@@ -76,9 +120,6 @@
     * Added a ping() method to pubsub objects. Thanks krishan-carbon
     * Fixed a bug with keys in the INFO dict that contained ':' symbols.
       Thanks mzalimeni
-    * ssl_cert_reqs now has a default value of 'required' by default. This
-      should make connecting to a remote Redis server over SSL more secure.
-      Thanks u2mejc
     * Fixed the select system call retry compatibility with Python 2.x.
       Thanks lddubeau
     * max_connections is now a valid querystring argument for creating
