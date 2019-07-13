@@ -4,7 +4,7 @@
 #
 Name     : redis
 Version  : 3.2.1
-Release  : 42
+Release  : 43
 URL      : https://files.pythonhosted.org/packages/24/d4/06486dee0f66ef8c5080dc576fdfb33131fd2e0be3747f2be4e5634088a2/redis-3.2.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/24/d4/06486dee0f66ef8c5080dc576fdfb33131fd2e0be3747f2be4e5634088a2/redis-3.2.1.tar.gz
 Summary  : Python client for Redis key-value store
