@@ -1,5 +1,5 @@
 PKG_NAME := redis
-URL = https://files.pythonhosted.org/packages/e9/dd/fcc1003fa83da521fdfa2f41515209ef15d2246f96d0d1ddaaa564a950b3/redis-3.3.10.tar.gz
+URL = https://files.pythonhosted.org/packages/06/ca/00557c74279d2f256d3c42cabf237631355f3a132e4c74c2000e6647ad98/redis-3.3.11.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
