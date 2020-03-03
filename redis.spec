@@ -4,7 +4,7 @@
 #
 Name     : redis
 Version  : 3.4.1
-Release  : 50
+Release  : 51
 URL      : https://files.pythonhosted.org/packages/ef/2e/2c0f59891db7db087a7eeaa79bc7c7f2c039e71a2b5b0a41391e9d462926/redis-3.4.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/ef/2e/2c0f59891db7db087a7eeaa79bc7c7f2c039e71a2b5b0a41391e9d462926/redis-3.4.1.tar.gz
 Summary  : Advanced key-value store
@@ -51,6 +51,7 @@ python components for the redis package.
 Summary: python3 components for the redis package.
 Group: Default
 Requires: python3-core
+Provides: pypi(redis)
 
 %description python3
 python3 components for the redis package.
@@ -65,7 +66,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1580749756
+export SOURCE_DATE_EPOCH=1583218557
 # -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
