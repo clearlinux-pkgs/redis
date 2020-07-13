@@ -4,7 +4,7 @@
 #
 Name     : redis
 Version  : 3.5.3
-Release  : 55
+Release  : 56
 URL      : https://files.pythonhosted.org/packages/b3/17/1e567ff78c83854e16b98694411fe6e08c3426af866ad11397cddceb80d3/redis-3.5.3.tar.gz
 Source0  : https://files.pythonhosted.org/packages/b3/17/1e567ff78c83854e16b98694411fe6e08c3426af866ad11397cddceb80d3/redis-3.5.3.tar.gz
 Summary  : Python client for Redis key-value store
